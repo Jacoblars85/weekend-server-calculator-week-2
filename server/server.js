@@ -7,22 +7,33 @@ app.use(express.static('server/public'));
 
 // Global variable that will contain all of the
 // calculation objects:
-let calculations = []
+let calculations = [{
+  num1: 4,
+  num2: 4,
+  operator: '*'
+},
+{
+  num1: 8,
+  num2: 2,
+  operator: '/'
+}
+]
+
 let totalNum = 0;
 
 function doingMath(num1, num2) {
   if (calculations.operator === '+') {
     console.log('the new total is', totalNum);
-    return totalNum = num1 + num2
+    totalNum = num1 + num2
   } else if (calculations.operator === '-') {
     console.log('the new total is', totalNum);
-    return totalNum = num1 + num2
+    totalNum = num1 + num2
   } else if (calculations.operator === '*') {
     console.log('the new total is', totalNum);
-    return totalNum = num1 + num2
+    totalNum = num1 + num2
   } else if (calculations.operator === '/') {
     console.log('the new total is', totalNum);
-    return totalNum = num1 + num2
+    totalNum = num1 + num2
   }
 }
 
