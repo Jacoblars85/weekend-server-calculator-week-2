@@ -41,19 +41,26 @@ function getMath() {
 
 function renderingMath(calculations) {
     console.log('were rendering');
-
+    //finding the spot to put the new math
     let recentResult = document.getElementById('recentResult');
-      
+    let resultHistory = document.getElementById('resultHistory');
+        //clearing previous spot for this area
+        resultHistory.innerHTML = ''
         recentResult.innerHTML = '';
       
         for (let calc of calculations) {
-          recentResult.innerHTML += `
-            <p>${totalNum}:</p>
+            //adds to the newest math that was just done
+          recentResult.innerHTML = `
+            <p>${calc.totalNum}</p>
+          `
+            //should add all of the recent resaults into this part
+          resultHistory.innerHTML +=`
+          <ol>${calc.num1} ${calc.operator} ${calc.num2} = ${calc.totalNum}</ol>
           `
         }
 
 }
 
-function clearButton(params) {
+function clearButton() {
     
 }
