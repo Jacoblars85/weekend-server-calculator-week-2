@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-let PORT = process.env.PORT || 5000;
+let PORT = process.env.PORT || 5001;
 
 app.use(express.json());
 app.use(express.static('server/public'));
@@ -8,13 +8,49 @@ app.use(express.static('server/public'));
 // Global variable that will contain all of the
 // calculation objects:
 let calculations = []
+let totalNum = 0;
+
+function doingMath(num1, num2) {
+  if (calculations.operator === '+') {
+    console.log('the new total is', totalNum);
+    return totalNum = num1 + num2
+  } else if (calculations.operator === '-') {
+    console.log('the new total is', totalNum);
+    return totalNum = num1 + num2
+  } else if (calculations.operator === '*') {
+    console.log('the new total is', totalNum);
+    return totalNum = num1 + num2
+  } else if (calculations.operator === '/') {
+    console.log('the new total is', totalNum);
+    return totalNum = num1 + num2
+  }
+}
 
 
 // Here's a wonderful place to make some routes:
 
 // GET /calculations
+app.get('/math', (req, res) => {
+  res.send(calculations);
+});
+
 
 // POST /calculations
+
+app.post('/math', (req, res) => {
+  let newMath = req.body
+  inventoryArray.push(newMath)
+  res.sendStatus(201)
+});
+
+
+
+
+
+
+
+
+
 
 
 // PLEASE DO NOT MODIFY ANY CODE BELOW THESE BEARS:
