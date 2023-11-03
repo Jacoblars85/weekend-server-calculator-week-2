@@ -6,17 +6,20 @@ let operator = '';
 function postMath(event) {
     console.log('in post math');
     event.preventDefault()
-      
-    let name = document.getElementById('name').value
-    let description = document.getElementById('description').value
 
-    document.getElementById('name').value = ''
-    document.getElementById('description').value = ''
+      //
+    let num1 = document.getElementById('num1').value
+    let num2 = document.getElementById('num2').value
+    let operator = document.getElementById('num2').value
+
+    document.getElementById('num1').value = ''
+    document.getElementById('num2').value = ''
   
     
-    let newInventory = {
-      name: name,
-      description: description
+    let newMath = {
+      num1: num1,
+      num2: num2,
+      operator: operator
     }
     axios({
       method: 'POST',

@@ -50,7 +50,7 @@ app.get('/math', (req, res) => {
 
 app.post('/math', (req, res) => {
   let newMath = req.body
-  inventoryArray.push(newMath)
+  calculations.push(newMath)
   res.sendStatus(201)
 });
 
