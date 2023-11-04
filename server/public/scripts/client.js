@@ -10,7 +10,7 @@ function postMath(event) {
       //grabs the input and makes it a variable
     let num1 = document.getElementById('num1').value
     let num2 = document.getElementById('num2').value
-    let operator = document.getElementById('operatorButton').value
+    // let operator = document.getElementById('operatorButton').value
 
     //clears the inputs
     document.getElementById('num1').value = ''
@@ -25,7 +25,7 @@ function postMath(event) {
     }
     axios({
       method: 'POST',
-      url: '/inventory',
+      url: '/math',
       data: newMath
     }).then((response) => {
         getMath()
