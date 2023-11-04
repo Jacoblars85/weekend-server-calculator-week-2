@@ -11,19 +11,19 @@
 
     <form data-testid="calculator">
       <input id="numOne" type="number" placeholder="First Number">
-      <button onclick="">+</button>
-      <button onclick="">-</button>
-      <button onclick="">*</button>
-      <button onclick="">/</button>
+      <button onclick="operatorButton(event, '+')">+</button>
+      <button onclick="operatorButton(event, '-')">-</button>
+      <button onclick="operatorButton(event, '*')">*</button>
+      <button onclick="operatorButton(event, '/')">/</button>
       <input id="numTwo" type="number" placeholder="Second Number">
-      <button onclick="postMath()">=</button>
+      <button onclick="postMath(event)">=</button>
       <button onclick="clearButton()">C</button>
     </form>
-
+    <h2>recent result</h2>
     <section id="recentResult" data-testid="recentResult">
       <!-- The most recent calculation result goes here. -->
     </section>
-
+    <h2>result History</h2>
     <section id="resultHistory" data-testid="resultHistory">
       <!-- The list of calculation results goes here. -->
     </section>

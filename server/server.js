@@ -7,6 +7,7 @@ app.use(express.static('server/public'));
 
 // Global variable that will contain all of the
 // calculation objects:
+
 let calculations = [{
   numOne: 4,
   numTwo: 4,
@@ -25,16 +26,12 @@ console.log(calculations);
 
 function doingMath(num1, num2, operator) {
   if (operator === '+') {
-    console.log('the new total is', result);
     return num1 + num2
   } else if (operator === '-') {
-    console.log('the new total is', result);
     return num1 - num2
   } else if (operator === '*') {
-    console.log('the new total is', result);
     return num1 * num2
   } else if (operator === '/') {
-    console.log('the new total is', result);
     return num1 / num2
   }
 }
@@ -44,6 +41,7 @@ function doingMath(num1, num2, operator) {
 
 // GET /calculations
 app.get('/calculations', (req, res) => {
+  console.log('we got a get req', calculations);
   res.send(calculations);
 });
 
@@ -51,7 +49,9 @@ app.get('/calculations', (req, res) => {
 // POST /calculations
 
 app.post('/calculations', (req, res) => {
+  console.log('we got a post req');
   let newMath = req.body
+  console.log(newMath);
   calculations.push(newMath)
   res.sendStatus(201)
 });

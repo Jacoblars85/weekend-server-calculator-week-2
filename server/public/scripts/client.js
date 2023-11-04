@@ -24,11 +24,13 @@ function postMath(event) {
       numTwo: numTwo,
       result: result
     }
+    console.log(newMath);
     axios({
       method: 'POST',
       url: '/calculations',
       data: newMath
     }).then((response) => {
+      console.log('did this work?');
         getMath()
     })
 }
@@ -41,6 +43,7 @@ function getMath() {
       }).then((response) => {
         let calculations = response.data 
         renderingMath(calculations)
+        console.log('this data is being rendered', calculations);
       })
 
 }
@@ -69,25 +72,37 @@ function renderingMath(calculations) {
 }
 
 
-function operatorButton(event) {
+function operatorButton(event, op) {
   console.log('we are clicking operator button');
   event.preventDefault();
 
-  
+  if (op === '+') {
+    operator = '+'
+    console.log(operator);
+  } else if (op === '-') {
+    operator = '-'
+    console.log(operator);
+  } else if (op === '*') {
+    operator = '*'
+    console.log(operator);
+  } else if (op === '/') {
+    operator = '/'
+    console.log(operator);
+  } 
 }
 
 
 
-function clearButton() {
-    document.getElementById('roundTable').innerHTML = ''
-    let clearValues = true;
+// function clearButton() {
+//     document.getElementById('roundTable').innerHTML = ''
+//     let clearValues = true;
 
-    axios({
-      method: 'POST',
-      url: '/clear',
-      data: clearValues
-    }).then((response) => {
-      console.log("does this work clearing?");
-      clearValues = false;
-    })
-  }
+//     axios({
+//       method: 'POST',
+//       url: '/clear',
+//       data: clearValues
+//     }).then((response) => {
+//       console.log("does this work clearing?");
+//       clearValues = false;
+//     })
+//   }
