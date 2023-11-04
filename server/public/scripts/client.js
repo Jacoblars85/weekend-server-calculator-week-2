@@ -52,16 +52,18 @@ function postMath(event) {
 //Renders the math onto the screen below
 function renderingMath(calculations) {
     console.log('were rendering');
+    
     //finding the spot to put the new math
     let recentResult = document.getElementById('recentResult');
     let resultHistory = document.getElementById('resultHistory');
+
         //clearing previous spot for this area
         resultHistory.innerHTML = ''
         recentResult.innerHTML = '';
       
       //   adds to the newest math that was just done
         recentResult.innerHTML += `
-        <p>${calculations[calculations.length-1].result}</p>
+        <b>${calculations[calculations.length-1].result}</b>
       `
         for (let calc of calculations) {
             //should add all of the recent resaults into this part

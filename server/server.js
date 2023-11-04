@@ -10,24 +10,16 @@ app.use(express.static('server/public'));
 
 let calculations = [];
 
-
-// let result = 0;
-// let newestResult = calculations[calculations.length-1];
-// newestResult.result = doingMath(newestResult.numOne, newestResult.numTwo, newestResult.operator);
-
-// console.log('this should be the result', result);
-// console.log('this should be the calc array', calculations);
-
-
+//does all the math
 function doingMath(numOne, numTwo, operator) {
   if (operator === '+') {
-    return numOne + numTwo
+    return Number(numOne) + Number(numTwo)
   } else if (operator === '-') {
-    return numOne - numTwo
+    return Number(numOne) - Number(numTwo)
   } else if (operator === '*') {
-    return numOne * numTwo
+    return Number(numOne) * Number(numTwo)
   } else if (operator === '/') {
-    return numOne / numTwo
+    return Number(numOne) / Number(numTwo)
   }
 }
 
@@ -39,16 +31,18 @@ app.get('/calculations', (req, res) => {
   res.send(calculations);
 });
 
-
 // POST /calculations
-
 app.post('/calculations', (req, res) => {
   console.log('we got a post req');
   let newMath = req.body
   console.log(newMath);
+  //pushes the data into the array
   calculations.push(newMath)
 
+//gets the last object in that array
 let newestResult = calculations[calculations.length-1];
+
+//does the math
 newestResult.result = doingMath(newestResult.numOne, newestResult.numTwo, newestResult.operator);
 
 console.log('this should be the result', newestResult.result);
@@ -56,23 +50,6 @@ console.log('this should be the calc array', calculations);
 
   res.sendStatus(201)
 });
-
-
-// app.post('/clear', (req, res) => {
-//   console.log('we got POST req');
-//   let clearValues = req.body
-//   if (clearValues) {
-    
-//   }
-//   res.sendStatus(201)
-
-// })
-
-
-
-
-
-
 
 
 
