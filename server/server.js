@@ -8,32 +8,34 @@ app.use(express.static('server/public'));
 // Global variable that will contain all of the
 // calculation objects:
 let calculations = [{
-  num1: 4,
-  num2: 4,
-  operator: '*'
+  numOne: 4,
+  numTwo: 4,
+  operator: '*',
+  result: 16
 },
-{
-  num1: 8,
-  num2: 2,
-  operator: '/'
-}
+
 ]
 
-let totalNum = 0;
 
-function doingMath(num1, num2) {
-  if (calculations.operator === '+') {
-    console.log('the new total is', totalNum);
-    totalNum = num1 + num2
-  } else if (calculations.operator === '-') {
-    console.log('the new total is', totalNum);
-    totalNum = num1 + num2
-  } else if (calculations.operator === '*') {
-    console.log('the new total is', totalNum);
-    totalNum = num1 + num2
-  } else if (calculations.operator === '/') {
-    console.log('the new total is', totalNum);
-    totalNum = num1 + num2
+let newestResult = calculations[calculations.length-1]
+let result = doingMath(newestResult.numOne, newestResult.numTwo, newestResult.operator);
+
+console.log(result);
+console.log(calculations);
+
+function doingMath(num1, num2, operator) {
+  if (operator === '+') {
+    console.log('the new total is', result);
+    return num1 + num2
+  } else if (operator === '-') {
+    console.log('the new total is', result);
+    return num1 - num2
+  } else if (operator === '*') {
+    console.log('the new total is', result);
+    return num1 * num2
+  } else if (operator === '/') {
+    console.log('the new total is', result);
+    return num1 / num2
   }
 }
 
@@ -41,29 +43,29 @@ function doingMath(num1, num2) {
 // Here's a wonderful place to make some routes:
 
 // GET /calculations
-app.get('/math', (req, res) => {
+app.get('/calculations', (req, res) => {
   res.send(calculations);
 });
 
 
 // POST /calculations
 
-app.post('/math', (req, res) => {
+app.post('/calculations', (req, res) => {
   let newMath = req.body
   calculations.push(newMath)
   res.sendStatus(201)
 });
 
 
-app.post('/clear', (req, res) => {
-  console.log('we got POST req');
-  let clearValues = req.body
-  if (clearValues) {
-    console.log('we cleared', randomNumber);
-  }
-  res.sendStatus(201)
+// app.post('/clear', (req, res) => {
+//   console.log('we got POST req');
+//   let clearValues = req.body
+//   if (clearValues) {
+    
+//   }
+//   res.sendStatus(201)
 
-})
+// })
 
 
 

@@ -1,6 +1,6 @@
 console.log('client.js is sourced!');
 
-let totalNum = 0;
+let result = 0;
 let operator = '';
 
 //the POST route for the math
@@ -8,24 +8,25 @@ function postMath(event) {
     event.preventDefault()
 
       //grabs the input and makes it a variable
-    let num1 = document.getElementById('num1').value
-    let num2 = document.getElementById('num2').value
+    let numOne = document.getElementById('numOne').value
+    let numTwo = document.getElementById('numTwo').value
     // let operator = document.getElementById('operatorButton').value
 
     //clears the inputs
-    document.getElementById('num1').value = ''
-    document.getElementById('num2').value = ''
+    document.getElementById('numOne').value = ''
+    document.getElementById('numTwo').value = ''
     
   
     //puts the input into an object 
     let newMath = {
-      num1: num1,
-      num2: num2,
-      operator: operator
+      numOne: numOne,
+      operator: operator,
+      numTwo: numTwo,
+      result: result
     }
     axios({
       method: 'POST',
-      url: '/math',
+      url: '/calculations',
       data: newMath
     }).then((response) => {
         getMath()
@@ -35,7 +36,7 @@ function postMath(event) {
 //the GET route for the math
 function getMath() {
     axios({
-        url: '/math',
+        url: '/calculations',
         method: 'GET'
       }).then((response) => {
         let calculations = response.data 
@@ -54,23 +55,32 @@ function renderingMath(calculations) {
         resultHistory.innerHTML = ''
         recentResult.innerHTML = '';
       
+        //adds to the newest math that was just done
+      //   recentResult.innerHTML = `
+      //   <p>${calc.result}</p>
+      // `
         for (let calc of calculations) {
-            //adds to the newest math that was just done
-          recentResult.innerHTML = `
-            <p>${calc.totalNum}</p>
-          `
             //should add all of the recent resaults into this part
           resultHistory.innerHTML +=`
-          <ol>${calc.num1} ${calc.operator} ${calc.num2} = ${calc.totalNum}</ol>
+          <ol>${calc.numOne} ${calc.operator} ${calc.numTwo} = ${calc.result}</ol>
           `
         }
 
 }
 
+
+function operatorButton(event) {
+  console.log('we are clicking operator button');
+  event.preventDefault();
+
+  
+}
+
+
+
 function clearButton() {
     document.getElementById('roundTable').innerHTML = ''
     let clearValues = true;
-    roundNum = 0;
 
     axios({
       method: 'POST',
