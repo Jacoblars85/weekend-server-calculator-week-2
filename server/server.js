@@ -8,12 +8,7 @@ app.use(express.static('server/public'));
 // Global variable that will contain all of the
 // calculation objects:
 
-let calculations = [{
-  numOne: 0,
-  operator: '',
-  numTwo: 0,
-  result: 0
-}];
+let calculations = [];
 
 
 // let result = 0;
@@ -36,9 +31,6 @@ function doingMath(numOne, numTwo, operator) {
   }
 }
 
-
-
-
 // Here's a wonderful place to make some routes:
 
 // GET /calculations
@@ -55,8 +47,6 @@ app.post('/calculations', (req, res) => {
   let newMath = req.body
   console.log(newMath);
   calculations.push(newMath)
-
-
 
 let newestResult = calculations[calculations.length-1];
 newestResult.result = doingMath(newestResult.numOne, newestResult.numTwo, newestResult.operator);

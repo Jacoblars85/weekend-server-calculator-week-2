@@ -3,6 +3,19 @@ console.log('client.js is sourced!');
 let result = 0;
 let operator = '';
 
+//the GET route for the math
+function getMath() {
+  axios({
+      url: '/calculations',
+      method: 'GET'
+    }).then((response) => {
+      let calculations = response.data 
+      renderingMath(calculations)
+      console.log('this data is being rendered', calculations);
+    })
+
+}
+
 //the POST route for the math
 function postMath(event) {
     event.preventDefault()
@@ -36,19 +49,6 @@ function postMath(event) {
     })
 }
 
-//the GET route for the math
-function getMath() {
-    axios({
-        url: '/calculations',
-        method: 'GET'
-      }).then((response) => {
-        let calculations = response.data 
-        renderingMath(calculations)
-        console.log('this data is being rendered', calculations);
-      })
-
-}
-
 //Renders the math onto the screen below
 function renderingMath(calculations) {
     console.log('were rendering');
@@ -72,7 +72,7 @@ function renderingMath(calculations) {
 
 }
 
-
+//figures out which operator got clicked
 function operatorButton(event, op) {
   console.log('we are clicking operator button');
   event.preventDefault();
@@ -95,16 +95,4 @@ function operatorButton(event, op) {
 
 
 
-// function clearButton() {
-//     document.getElementById('roundTable').innerHTML = ''
-//     let clearValues = true;
-
-//     axios({
-//       method: 'POST',
-//       url: '/clear',
-//       data: clearValues
-//     }).then((response) => {
-//       console.log("does this work clearing?");
-//       clearValues = false;
-//     })
-//   }
+getMath()
