@@ -8,9 +8,10 @@ function postMath(event) {
     event.preventDefault()
 
       //grabs the input and makes it a variable
-    let numOne = document.getElementById('numOne').value
-    let numTwo = document.getElementById('numTwo').value
-    // let operator = document.getElementById('operatorButton').value
+    let numOne = document.getElementById('numOne').valueAsNumber
+    let numTwo = document.getElementById('numTwo').valueAsNumber
+    operatorButton(event);
+    
 
     //clears the inputs
     document.getElementById('numOne').value = ''
@@ -58,10 +59,10 @@ function renderingMath(calculations) {
         resultHistory.innerHTML = ''
         recentResult.innerHTML = '';
       
-        //adds to the newest math that was just done
-      //   recentResult.innerHTML = `
-      //   <p>${calc.result}</p>
-      // `
+      //   adds to the newest math that was just done
+        recentResult.innerHTML += `
+        <p>${calculations[calculations.length-1].result}</p>
+      `
         for (let calc of calculations) {
             //should add all of the recent resaults into this part
           resultHistory.innerHTML +=`
@@ -89,6 +90,7 @@ function operatorButton(event, op) {
     operator = '/'
     console.log(operator);
   } 
+  return operator;
 }
 
 

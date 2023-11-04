@@ -9,32 +9,34 @@ app.use(express.static('server/public'));
 // calculation objects:
 
 let calculations = [{
-  numOne: 4,
-  numTwo: 4,
-  operator: '*',
-  result: 16
-},
-
-]
+  numOne: 0,
+  operator: '',
+  numTwo: 0,
+  result: 0
+}];
 
 
-let newestResult = calculations[calculations.length-1]
-let result = doingMath(newestResult.numOne, newestResult.numTwo, newestResult.operator);
+// let result = 0;
+// let newestResult = calculations[calculations.length-1];
+// newestResult.result = doingMath(newestResult.numOne, newestResult.numTwo, newestResult.operator);
 
-console.log(result);
-console.log(calculations);
+// console.log('this should be the result', result);
+// console.log('this should be the calc array', calculations);
 
-function doingMath(num1, num2, operator) {
+
+function doingMath(numOne, numTwo, operator) {
   if (operator === '+') {
-    return num1 + num2
+    return numOne + numTwo
   } else if (operator === '-') {
-    return num1 - num2
+    return numOne - numTwo
   } else if (operator === '*') {
-    return num1 * num2
+    return numOne * numTwo
   } else if (operator === '/') {
-    return num1 / num2
+    return numOne / numTwo
   }
 }
+
+
 
 
 // Here's a wonderful place to make some routes:
@@ -53,6 +55,15 @@ app.post('/calculations', (req, res) => {
   let newMath = req.body
   console.log(newMath);
   calculations.push(newMath)
+
+
+
+let newestResult = calculations[calculations.length-1];
+newestResult.result = doingMath(newestResult.numOne, newestResult.numTwo, newestResult.operator);
+
+console.log('this should be the result', newestResult.result);
+console.log('this should be the calc array', calculations);
+
   res.sendStatus(201)
 });
 
