@@ -55,6 +55,15 @@ app.post('/math', (req, res) => {
 });
 
 
+app.post('/clear', (req, res) => {
+  console.log('we got POST req');
+  let clearValues = req.body
+  if (clearValues) {
+    console.log('we cleared', randomNumber);
+  }
+  res.sendStatus(201)
+
+})
 
 
 

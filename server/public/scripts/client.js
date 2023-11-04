@@ -3,19 +3,21 @@ console.log('client.js is sourced!');
 let totalNum = 0;
 let operator = '';
 
+//the POST route for the math
 function postMath(event) {
-    console.log('in post math');
     event.preventDefault()
 
-      //
+      //grabs the input and makes it a variable
     let num1 = document.getElementById('num1').value
     let num2 = document.getElementById('num2').value
-    let operator = document.getElementById('num2').value
+    let operator = document.getElementById('operatorButton').value
 
+    //clears the inputs
     document.getElementById('num1').value = ''
     document.getElementById('num2').value = ''
-  
     
+  
+    //puts the input into an object 
     let newMath = {
       num1: num1,
       num2: num2,
@@ -24,14 +26,14 @@ function postMath(event) {
     axios({
       method: 'POST',
       url: '/inventory',
-      data: newInventory
+      data: newMath
     }).then((response) => {
-      getInventory()
+        getMath()
     })
 }
 
+//the GET route for the math
 function getMath() {
-    console.log('were getting get math');
     axios({
         url: '/math',
         method: 'GET'
@@ -42,6 +44,7 @@ function getMath() {
 
 }
 
+//Renders the math onto the screen below
 function renderingMath(calculations) {
     console.log('were rendering');
     //finding the spot to put the new math
@@ -65,5 +68,16 @@ function renderingMath(calculations) {
 }
 
 function clearButton() {
-    
-}
+    document.getElementById('roundTable').innerHTML = ''
+    let clearValues = true;
+    roundNum = 0;
+
+    axios({
+      method: 'POST',
+      url: '/clear',
+      data: clearValues
+    }).then((response) => {
+      console.log("does this work clearing?");
+      clearValues = false;
+    })
+  }
